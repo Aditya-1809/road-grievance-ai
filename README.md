@@ -1,4 +1,4 @@
-6
+
 # Citizen Grievance AI - Roads Department
 
 ## Project Overview
