@@ -1,8 +1,8 @@
+Citizen Grievance AI - Roads Department
 
-# Citizen Grievance AI - Roads Department
+Project Overview
 
-## Project Overview
-Citizen Grievance AI is an NLP-based complaint classification system developed for the Roads Department. The system analyzes citizen complaints and predicts the sentiment category of road-related issues.
+Citizen Grievance AI is an NLP-based complaint classification system developed for the Roads Department. The system analyzes citizen road-related complaints and predicts the sentiment category of road issues using Machine Learning and Natural Language Processing (NLP).
 
 The model classifies complaints into:
 
@@ -11,42 +11,49 @@ The model classifies complaints into:
 - Neutral
 - Positive
 
-Example:
+Example
 
 Input:
-```text
+
 Huge potholes near station causing accidents
-```
 
 Output:
-```text
+
 Critical
-```
 
 ---
 
-## Features
-- NLP-based complaint sentiment analysis
-- TF-IDF text vectorization
-- Logistic Regression model
-- Complaint prediction system
-- Exploratory Data Analysis (EDA)
-- Confusion Matrix visualization
-- Word Cloud generation
+Features
+
+✔ NLP-based complaint sentiment analysis
+✔ TF-IDF text vectorization
+✔ Logistic Regression classification model
+✔ Complaint sentiment prediction system
+✔ Exploratory Data Analysis (EDA)
+✔ Confusion Matrix visualization
+✔ Word Cloud generation
+✔ FastAPI integration for real-time prediction
+✔ Swagger API documentation ("/docs")
 
 ---
 
-## Technologies Used
+Technologies Used
+
 - Python
 - Pandas
+- NumPy
 - Scikit-learn
 - Matplotlib
 - Jupyter Notebook
+- FastAPI
+- Uvicorn
 - VS Code
+- Git & GitHub
 
 ---
 
-## Dataset
+Dataset
+
 The dataset contains road-related citizen complaints categorized into sentiment labels:
 
 - Critical
@@ -55,75 +62,100 @@ The dataset contains road-related citizen complaints categorized into sentiment 
 - Positive
 
 Dataset File:
-`roads.csv`
+"roads.csv"
 
 ---
 
-## Project Structure
+Project Structure
 
-```text
 citizen-grievance-ai
 │── roads.csv
 │── roads_eda.ipynb
 │── train_model.py
 │── predict.py
+│── api.py
 │── clean_text.py
 │── README.md
-```
 
 ---
 
-## Model Used
+Model Used
 
-### TF-IDF Vectorization
+TF-IDF Vectorization
+
 Used to convert complaint text into numerical form for machine learning.
 
-### Logistic Regression
+Logistic Regression
+
 Used as the classification algorithm for sentiment prediction.
 
 ---
 
-## Model Accuracy
+Model Accuracy
+
 Achieved approximately:
 
-**80%**
+80% accuracy
 
-accuracy on the Roads grievance dataset.
+on the Roads grievance dataset.
 
 ---
 
-## How to Run
+How to Run the Project
 
-### Install dependencies
-```bash
-pip install pandas scikit-learn matplotlib jupyter notebook
-```
+1. Install Dependencies
 
-### Train model
-```bash
+pip install pandas scikit-learn matplotlib jupyter notebook fastapi uvicorn
+
+2. Train Model
+
 python train_model.py
-```
 
-### Predict complaint sentiment
-```bash
+3. Predict Complaint Sentiment
+
 python predict.py
-```
 
 ---
 
-## Sample Prediction
+FastAPI Integration
+
+Run API Server
+
+uvicorn api:app --reload
+
+Open API Documentation
+
+http://127.0.0.1:8000/docs
+
+The Swagger UI allows testing complaint predictions directly through the browser.
+
+Sample API Request
+
+{
+  "complaint": "Huge pothole near railway station"
+}
+
+Sample API Response
+
+{
+  "complaint": "Huge pothole near railway station",
+  "predicted_sentiment": "Critical"
+}
+
+---
+
+Sample Prediction
 
 Input:
-```text
+
 Road repaired successfully
-```
 
 Output:
-```text
+
 Positive
-```
 
 ---
 
-## Author
-Aditya Bhandarakar
+Author
+
+Aditya Dhiraj Bhandarkar
