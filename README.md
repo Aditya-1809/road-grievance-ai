@@ -1,10 +1,14 @@
-Citizen Grievance AI - Roads Department
+Citizen Grievance AI – Roads Department
 
 Project Overview
 
-Citizen Grievance AI is an NLP-based complaint classification system developed for the Roads Department. The system analyzes citizen road-related complaints and predicts the sentiment category of road issues using Machine Learning and Natural Language Processing (NLP).
+Citizen Grievance AI is a Machine Learning–based complaint classification system developed for analyzing road-related citizen grievances. The objective of this project is to help local authorities identify the severity of road complaints and improve response prioritization.
 
-The model classifies complaints into:
+The system processes road complaints submitted by citizens and predicts the complaint category using Natural Language Processing (NLP) and Machine Learning techniques.
+
+This project was inspired by real-world civic problems related to road maintenance and public infrastructure, where complaints such as potholes, damaged roads, waterlogging, and unsafe travel conditions often require faster attention.
+
+The model classifies complaints into four categories:
 
 - Critical
 - Negative
@@ -23,17 +27,16 @@ Critical
 
 ---
 
-Features
+Key Features
 
-✔ NLP-based complaint sentiment analysis
-✔ TF-IDF text vectorization
-✔ Logistic Regression classification model
-✔ Complaint sentiment prediction system
-✔ Exploratory Data Analysis (EDA)
-✔ Confusion Matrix visualization
-✔ Word Cloud generation
-✔ FastAPI integration for real-time prediction
-✔ Swagger API documentation ("/docs")
+✔ Complaint classification using Machine Learning
+✔ NLP-based text preprocessing and feature extraction
+✔ TF-IDF vectorization for complaint analysis
+✔ Logistic Regression model for prediction
+✔ Exploratory Data Analysis (EDA) using Jupyter Notebook
+✔ FastAPI integration for real-time complaint prediction
+✔ Interactive Swagger API documentation ("/docs")
+✔ Trained model saving using Joblib (".pkl" files)
 
 ---
 
@@ -43,25 +46,29 @@ Technologies Used
 - Pandas
 - NumPy
 - Scikit-learn
-- Matplotlib
-- Jupyter Notebook
 - FastAPI
 - Uvicorn
+- Matplotlib
+- Jupyter Notebook
+- Joblib
 - VS Code
 - Git & GitHub
 
 ---
 
-Dataset
+Dataset Information
 
-The dataset contains road-related citizen complaints categorized into sentiment labels:
+The dataset contains road-related citizen complaints categorized into sentiment/severity labels.
+
+Complaint Categories
 
 - Critical
 - Negative
 - Neutral
 - Positive
 
-Dataset File:
+Dataset File
+
 "roads.csv"
 
 ---
@@ -71,33 +78,36 @@ Project Structure
 citizen-grievance-ai
 │── roads.csv
 │── roads_eda.ipynb
-│── train_model.py
-│── predict.py
+│── complaint_classifier.py
+│── grievance_predictor.py
+│── complaint_cleaner.py
+│── grievance_loader.py
+│── text_feature_builder.py
 │── api.py
-│── clean_text.py
+│── requirements.txt
 │── README.md
 
 ---
 
-Model Used
+Machine Learning Approach
 
 TF-IDF Vectorization
 
-Used to convert complaint text into numerical form for machine learning.
+TF-IDF (Term Frequency–Inverse Document Frequency) is used to convert complaint text into numerical values so that machine learning algorithms can process textual data effectively.
 
 Logistic Regression
 
-Used as the classification algorithm for sentiment prediction.
+Logistic Regression was selected as the classification model because it performs efficiently in text classification problems and provides fast predictions with low computational cost.
 
 ---
 
 Model Accuracy
 
-Achieved approximately:
+The model achieved approximately:
 
-80% accuracy
+80% Accuracy
 
-on the Roads grievance dataset.
+on the Roads Grievance dataset.
 
 ---
 
@@ -105,29 +115,32 @@ How to Run the Project
 
 1. Install Dependencies
 
-pip install pandas scikit-learn matplotlib jupyter notebook fastapi uvicorn
+pip install -r requirements.txt
 
-2. Train Model
+2. Train the Model
 
-python train_model.py
+Run the training file once to generate model files:
 
-3. Predict Complaint Sentiment
+python complaint_classifier.py
 
-python predict.py
+This generates:
 
----
+- "grievance_model.pkl"
+- "text_encoder.pkl"
 
-FastAPI Integration
-
-Run API Server
+3. Start FastAPI Server
 
 uvicorn api:app --reload
 
-Open API Documentation
+4. Open Swagger API Documentation
+
+Open in browser:
 
 http://127.0.0.1:8000/docs
 
-The Swagger UI allows testing complaint predictions directly through the browser.
+You can directly test complaint predictions from the browser.
+
+---
 
 Sample API Request
 
@@ -144,15 +157,15 @@ Sample API Response
 
 ---
 
-Sample Prediction
+Future Scope
 
-Input:
+This grievance classification system can be extended to support additional public service departments such as:
 
-Road repaired successfully
+- Roads Department
+- Water Department
+- Electricity Department
 
-Output:
-
-Positive
+This would allow a unified citizen grievance system for multiple municipal services.
 
 ---
 
