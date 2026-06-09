@@ -1,46 +1,67 @@
 import pandas as pd
+import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
 # Load dataset
-df = pd.read_csv("roads.csv")
+road_complaints = pd.read_csv("roads.csv")
 
 # Features and target
-X = df["complaint_text"]
-y = df["sentiment"]
+complaint_messages = road_complaints["complaint_text"]
+complaint_sentiment = road_complaints["sentiment"]
 
 # Convert text to numbers
-vectorizer = TfidfVectorizer(
+text_encoder = TfidfVectorizer(
     ngram_range=(1,3),
     stop_words="english",
     max_features=3000
 )
 
-X_vectorized = vectorizer.fit_transform(X)
+processed_features = text_encoder.fit_transform(
+    complaint_messages
+)
 
 # Split data
 X_train, X_test, y_train, y_test = train_test_split(
-    X_vectorized,
-    y,
+    processed_features,
+    complaint_sentiment,
     test_size=0.1,
     random_state=42
 )
 
 # Train model
-model = LogisticRegression(
+grievance_classifier = LogisticRegression(
     max_iter=3000,
     C=2,
     solver="lbfgs"
 )
 
-model.fit(X_train, y_train)
+grievance_classifier.fit(X_train, y_train)
 
 # Predict
-y_pred = model.predict(X_test)
+predicted_output = grievance_classifier.predict(
+    X_test
+)
 
 # Accuracy
-accuracy = accuracy_score(y_test, y_pred)
+accuracy = accuracy_score(
+    y_test,
+    predicted_output
+)
+
+# Save model and vectorizer
+joblib.dump(
+    grievance_classifier,
+    "grievance_model.pkl"
+)
+
+joblib.dump(
+    text_encoder,
+    "text_encoder.pkl"
+)
 
 print("Model Accuracy:", accuracy * 100, "%")
+print("Model saved successfully.")
+print("Vectorizer saved successfully.")
